@@ -15,7 +15,7 @@
     <AssemblyName>Alloy85</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>true</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
@@ -327,6 +327,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="App_Data\EPiServerDB_1ad8b0c8.mdf" />
+    <Content Include="App_Data\EPiServerDB_1ad8b0c8_log.ldf">
+      <DependentUpon>EPiServerDB_1ad8b0c8.mdf</DependentUpon>
+    </Content>
     <Content Include="ClientResources\Images\icons\layoutIcons24x24.png" />
     <Content Include="ClientResources\Scripts\Editors\StringList.js" />
     <Content Include="ClientResources\Styles\LayoutIcons.css" />
@@ -496,7 +500,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:63393/</IISUrl>
+          <IISUrl>http://local.alloy.com</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
