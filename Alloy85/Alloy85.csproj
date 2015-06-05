@@ -177,6 +177,7 @@
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -279,6 +280,7 @@
     <Compile Include="Controllers\PreviewController.cs" />
     <Compile Include="Controllers\SearchPageController.cs" />
     <Compile Include="Controllers\StartPageController.cs" />
+    <Compile Include="Controllers\TestPageController.cs" />
     <Compile Include="Controllers\VideoFileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -310,6 +312,7 @@
     <Compile Include="Models\Pages\SitePageData.cs" />
     <Compile Include="Models\Pages\StandardPage.cs" />
     <Compile Include="Models\Pages\StartPage.cs" />
+    <Compile Include="Models\Pages\TestPage.cs" />
     <Compile Include="Models\Properties\PropertyStringList.cs" />
     <Compile Include="Models\SiteContentType.cs" />
     <Compile Include="Models\SiteImageUrl.cs" />
@@ -485,6 +488,7 @@
     <Content Include="modules\_protected\CMS\EPiServer.Cms.Shell.UI.zip" />
     <Content Include="modules\_protected\EPiServer.Packaging.UI\web.config" />
     <Content Include="modules\_protected\EPiServer.Packaging.UI\EPiServer.Packaging.UI.zip" />
+    <Content Include="Views\TestPage\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
