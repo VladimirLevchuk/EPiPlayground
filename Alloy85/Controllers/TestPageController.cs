@@ -15,23 +15,17 @@ namespace Alloy85.Controllers
         public TestPageViewModel(TestPage currentPage)
             : base(currentPage)
         { }
-
-        //public string GlobalPageLevel1 { get; set; }
-        //public string GlobalPageLevel2 { get; set; }
-        //public string GlobalPageLevel3 { get; set; }
     }
 
     public class TestPageController : PageControllerBase<TestPage>
     {
         private readonly PageRouteHelper _pageRouteHelper;
         private readonly ContentRouteHelper _contentRouteHelper;
-        private readonly UrlResolver _urlResolver;
 
-        public TestPageController(PageRouteHelper pageRouteHelper, ContentRouteHelper contentRouteHelper, UrlResolver urlResolver)
+        public TestPageController(PageRouteHelper pageRouteHelper, ContentRouteHelper contentRouteHelper)
         {
             _pageRouteHelper = pageRouteHelper;
             _contentRouteHelper = contentRouteHelper;
-            _urlResolver = urlResolver;
         }
 
         public async Task<ActionResult> Index(TestPage currentPage)
@@ -47,12 +41,7 @@ namespace Alloy85.Controllers
             // var page = _contentRouteHelper.Content; // works fine
             // var page = currentPage; // works fine
 
-            var model = new TestPageViewModel((TestPage) page)
-            {
-                //GlobalPageLevel1 = urlResolver.GetUrl(new ContentReference(6)),
-                //GlobalPageLevel2 = urlResolver.GetUrl(new ContentReference(7)),
-                //GlobalPageLevel3 = urlResolver.GetUrl(new ContentReference(8))
-            };
+            var model = new TestPageViewModel((TestPage) page);
 
             return View(model);
         }

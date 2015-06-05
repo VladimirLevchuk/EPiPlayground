@@ -2,9 +2,3 @@
 @model Alloy85.Controllers.TestPageViewModel
 
 <h2> @(Model.CurrentPage.IfNotNull(x => x.PageName) ?? "Oh no. We've lost the page. ")</h2>
-
-@*<ul>
-    <li> <a href="@Model.GlobalPageLevel1">@Model.GlobalPageLevel1</a></li>
-    <li> <a href="@Model.GlobalPageLevel2">@Model.GlobalPageLevel2</a></li>
-    <li> <a href="@Model.GlobalPageLevel3">@Model.GlobalPageLevel3</a></li>
-</ul>*@
