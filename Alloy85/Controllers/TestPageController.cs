@@ -28,15 +28,15 @@ namespace Alloy85.Controllers
             _contentRouteHelper = contentRouteHelper;
         }
 
-        public async Task<ActionResult> Index(TestPage currentPage)
+        public ActionResult Index(TestPage currentPage)
         {
-            var temp = await TestAsyncMethod();
+            var temp = TestAsyncMethod().Result;
             var pageRouteHelper = ServiceLocator.Current.GetInstance<PageRouteHelper>();
             var contentRouteHelper = ServiceLocator.Current.GetInstance<ContentRouteHelper>();
             var urlResolver = ServiceLocator.Current.GetInstance<UrlResolver>();
 
-            var page = pageRouteHelper.Page; // throws NRE
-            // var page = _pageRouteHelper.Page; // works fine
+            // var page = pageRouteHelper.Page; // throws NRE
+             var page = _pageRouteHelper.Page; // works fine
             // var page = contentRouteHelper.Content; // throws NRE
             // var page = _contentRouteHelper.Content; // works fine
             // var page = currentPage; // works fine
@@ -48,11 +48,23 @@ namespace Alloy85.Controllers
 
         public async Task<string> TestAsyncMethod()
         {
-            //return Task.FromResult("Hello"); // works fine
-            using (var client = new HttpClient())
+            return await Task.Run(() =>
             {
-                return await client.GetStringAsync("http://google.com");
-            }
+                var result = string.Empty;
+                for (int i = 0; i < 1000000; ++i)
+                {
+                    if (i % 10000 == 0)
+                    {
+                        result += ".";
+                    }
+                }
+                return result;
+            });
+
+            //using (var client = new HttpClient())
+            //{
+            //    return await client.GetStringAsync("http://google.com");
+            //}
         }
     }
 }
