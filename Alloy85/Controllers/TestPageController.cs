@@ -17,15 +17,33 @@ namespace Alloy85.Controllers
         { }
     }
 
+    public class TestService
+    {
+        private readonly PageRouteHelper _pageRouteHelper;
+
+        public TestService(PageRouteHelper pageRouteHelper)
+        {
+            _pageRouteHelper = pageRouteHelper;
+        }
+
+        public virtual PageData GetCurrentPage()
+        {
+            return _pageRouteHelper.Page;
+        }
+    }
+
     public class TestPageController : PageControllerBase<TestPage>
     {
         private readonly PageRouteHelper _pageRouteHelper;
         private readonly ContentRouteHelper _contentRouteHelper;
+        private readonly TestService _service;
 
-        public TestPageController(PageRouteHelper pageRouteHelper, ContentRouteHelper contentRouteHelper)
+        public TestPageController(PageRouteHelper pageRouteHelper, 
+            ContentRouteHelper contentRouteHelper, TestService service)
         {
             _pageRouteHelper = pageRouteHelper;
             _contentRouteHelper = contentRouteHelper;
+            _service = service;
         }
 
         public async Task<ActionResult> Index(TestPage currentPage)
@@ -34,10 +52,13 @@ namespace Alloy85.Controllers
             var pageRouteHelper = ServiceLocator.Current.GetInstance<PageRouteHelper>();
             var contentRouteHelper = ServiceLocator.Current.GetInstance<ContentRouteHelper>();
             var urlResolver = ServiceLocator.Current.GetInstance<UrlResolver>();
+            var service = ServiceLocator.Current.GetInstance<TestService>();
 
-            var page = pageRouteHelper.Page; // throws NRE
+            // var page = _service.GetCurrentPage(); // works fine
+            var page = service.GetCurrentPage();  // throws NRE
+            page = pageRouteHelper.Page; // throws NRE
             // var page = _pageRouteHelper.Page; // works fine
-            // var page = contentRouteHelper.Content; // throws NRE
+            var content = contentRouteHelper.Content; // throws NRE
             // var page = _contentRouteHelper.Content; // works fine
             // var page = currentPage; // works fine
 
